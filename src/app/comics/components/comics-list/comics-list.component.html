@@ -1,0 +1,23 @@
+<div class="row g-2 g-md-3">
+  <div *ngFor="let comic of comics" class="col-6 col-md-3">
+    <a [routerLink]="['/comics/', comic.id]">
+      <div class="card h-100">
+        <img
+          [src]="
+            comic.thumbnail.path +
+            '/portrait_uncanny.' +
+            comic.thumbnail.extension
+          "
+          [alt]="comic.title"
+          class="card-img-top"
+        />
+        <div class="card-body">
+          <p class="m-0">{{ comic.title }}</p>
+          <small class="text-muted">
+            {{ concatCreators(comic.creators.items) }}
+          </small>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

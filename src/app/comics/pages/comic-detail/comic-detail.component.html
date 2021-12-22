@@ -1,0 +1,11 @@
+<div *ngIf="!comic; else divComic" lass="alert alert-info">Cargando...</div>
+
+<ng-template #divComic>
+  <div class="row">
+    <div class="col-12">
+      <h2>
+        Comic: <small>{{ comic.title }}</small>
+      </h2>
+    </div>
+  </div>
+</ng-template>
