@@ -1,31 +1,20 @@
-<h2>Comics</h2>
-<hr />
+<app-comics-searcher (onEnter)="search($event)"> </app-comics-searcher>
 
-<div class="row">
-  <div class="col">
-    <app-comics-searcher (onEnter)="search($event)"> </app-comics-searcher>
-  </div>
-</div>
+<br />
 
-<hr />
-<div class="row g-2 g-md-3">
-  <div *ngFor="let search of defaultSearches" class="col-6 col-md-3">
-    <button
-      class="btn w-100"
-      [class]="
-        search == defaultSearchActive ? 'btn-primary' : 'btn-outline-primary'
-      "
-      (click)="activateSearchDefault(search)"
-    >
-      {{ search }}
-    </button>
-  </div>
+<app-default-searches
+  [defaultSearches]="defaultSearches"
+  (onSelect)="search($event)"
+></app-default-searches>
+
+<div *ngIf="loading" class="d-flex justify-content-center">
+  <img src="/assets/img/loading.gif" alt="Loading" />
 </div>
 
 <div *ngIf="isErrorOrNotFound" class="alert alert-danger mt-3">
   No hay resultados para {{ textSearch }}
 </div>
 
-<div *ngIf="comics.length > 0" class="row mt-3">
+<div *ngIf="!loading && comics.length > 0" class="row mt-4">
   <app-comics-list [comics]="comics"></app-comics-list>
 </div>

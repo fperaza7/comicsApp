@@ -1,0 +1,11 @@
+<div class="row g-2 g-md-3">
+  <div *ngFor="let search of defaultSearches" class="col-6 col-md-3">
+    <button
+      class="btn w-100"
+      [class]="search == defaultSearchActive ? 'btn-dark' : 'btn-outline-dark'"
+      (click)="activateSearchDefault(search)"
+    >
+      {{ search }}
+    </button>
+  </div>
+</div>

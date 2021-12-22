@@ -14,7 +14,7 @@ export class ComicsPageComponent implements OnInit {
   isErrorOrNotFound: boolean = false;
   comics: Comic[] = [];
   defaultSearches: string[] = ['Spider-Man', 'Wolverine', 'Hulk', 'Thor'];
-  defaultSearchActive: string = '';
+  loading: boolean = false;
 
   constructor(private comicsService: ComicsService) { }
 
@@ -23,6 +23,7 @@ export class ComicsPageComponent implements OnInit {
   }
 
   search(textSearch: string = '') {
+    this.loading = true;
     this.isErrorOrNotFound = false;
     this.textSearch = textSearch;
     this.comicsService.getComics(this.textSearch).subscribe((res) => {
@@ -32,19 +33,13 @@ export class ComicsPageComponent implements OnInit {
       } else {
         this.comics = res.data.results;
       }
+      this.loading = false;
     }, (err) => {
       this.isErrorOrNotFound = true;
       this.comics = [];
+      this.loading = false;
     });
-  }
 
-  activateSearchDefault(search: string) {
-    if (search == this.defaultSearchActive) {
-      return;
-    }
-    this.defaultSearchActive = search;
-    this.comics = [];
-    this.search(search);
   }
 
 }

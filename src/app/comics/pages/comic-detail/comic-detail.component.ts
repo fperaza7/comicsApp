@@ -7,8 +7,7 @@ import { ComicsService } from '../../services/comics.service';
 @Component({
   selector: 'app-comic-detail',
   templateUrl: './comic-detail.component.html',
-  styles: [
-  ]
+  styleUrls: ['./comic-detail.component.css']
 })
 export class ComicDetailComponent implements OnInit {
 
@@ -20,7 +19,6 @@ export class ComicDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.activetedRoute.params
       .pipe(
         switchMap(({ comicId }) => this.comicsService.getComicById(comicId)),

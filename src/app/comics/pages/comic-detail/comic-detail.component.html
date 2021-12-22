@@ -1,11 +1,43 @@
-<div *ngIf="!comic; else divComic" lass="alert alert-info">Cargando...</div>
+<div *ngIf="!comic; else divComic" class="d-flex justify-content-center">
+  <img src="/assets/img/loading.gif" alt="Loading" />
+</div>
 
 <ng-template #divComic>
   <div class="row">
-    <div class="col-12">
-      <h2>
-        Comic: <small>{{ comic.title }}</small>
+    <div class="d-flex align-items-center">
+      <a [routerLink]="['/comics']" class="back me-2">&#8249;</a>
+      <h2 class="m-0">
+        {{ comic.title }}
       </h2>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="card border-0 flex-md-row">
+      <img
+        [src]="
+          comic.thumbnail.path +
+          '/portrait_uncanny.' +
+          comic.thumbnail.extension
+        "
+        [alt]="comic.title"
+        class="card-img"
+      />
+      <div class="card-body">
+        <h3>Published:</h3>
+        <p>{{ comic.dates[0].date }}</p>
+        <h3>Format:</h3>
+        <p>{{ comic.format }}</p>
+        <h3>Creators:</h3>
+        <p>
+          <span *ngFor="let item of comic.creators.items"
+            >{{ item.name }},</span
+          >
+        </p>
+        <h3>Price:</h3>
+        <p>{{ comic.prices[0].price | currency }}</p>
+        <h3>Number of variants:</h3>
+        <p>{{ comic.variants.length }}</p>
+      </div>
     </div>
   </div>
 </ng-template>

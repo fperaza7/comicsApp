@@ -7,15 +7,15 @@ import { ComicsPageComponent } from './pages/comics-page/comics-page.component';
 import { ComicsListComponent } from './components/comics-list/comics-list.component';
 import { ComicsSearcherComponent } from './components/comics-searcher/comics-searcher.component';
 import { ComicDetailComponent } from './pages/comic-detail/comic-detail.component';
-
-
+import { DefaultSearchesComponent } from './components/default-searches/default-searches.component';
 
 @NgModule({
   declarations: [
     ComicsPageComponent,
     ComicsListComponent,
     ComicsSearcherComponent,
-    ComicDetailComponent
+    ComicDetailComponent,
+    DefaultSearchesComponent
   ],
   exports: [
     ComicsPageComponent
